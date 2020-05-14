@@ -1,0 +1,15 @@
+body { 
+    background-color: rgba(119, 136, 153, 0.425);
+    max-width: auto;
+    max-height: auto;
+    }
+    
+    .navbar {
+    padding: 20px;
+    padding-bottom: 40px;
+    justify-content: center;
+    margin-bottom: 60px;
+    }
+    .navbar-brand{
+    font-size: 24px;
+    }

@@ -65,3 +65,11 @@ $.ajax({
     });
 
 })
+// API used for UV index and 5 day forecast
+var queryURLTwo = 'https://api.openweathermap.org/data/2.5/onecall?lat=40.67&lon=-111.94&appid=dc726fd3d02ce0beabb35f8feeef04c7'
+
+$.ajax({
+    url: queryURLTwo,
+    method: 'GET'
+}).then(function (response) {
+    console.log(response)

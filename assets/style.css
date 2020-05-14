@@ -4,7 +4,7 @@ body {
     max-height: auto;
     }
     
-    .navbar {
+.navbar {
     padding: 20px;
     padding-bottom: 40px;
     justify-content: center;
@@ -13,3 +13,42 @@ body {
     .navbar-brand{
     font-size: 24px;
     }
+
+p {
+        text-align: center;
+        font-weight: bold;
+        font-size: 22px;
+        text-decoration: underline;
+        }
+        
+        
+#buttons-view {
+        justify-content: center;
+        margin: 20px;
+        }
+        
+#forecast {
+        justify-content: center;
+        padding: auto;
+        }
+        
+#forecastDay {
+        text-align: center;
+        text-decoration: underline;
+        font-weight: bold;
+        
+        }
+        
+#tomorrow {
+        border: #343a40;
+        border-style: solid;
+        border-radius: 9px;
+        margin-right: 10px;
+        border-width: 4px;
+        background-color: #17a3b8a2;
+        
+        }
+        
+img {
+        justify-content: center;
+        }

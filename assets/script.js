@@ -7,8 +7,12 @@ var cityLS = localStorage.getItem("Searched City")
 var lonLS = localStorage.getItem("lon")
 var latLS = localStorage.getItem("lat")
 
+var city = $('#city-input').val().trim();
+
 // standard API 
-var queryURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + "kaysville" + '&appid=dc726fd3d02ce0beabb35f8feeef04c7';
+var queryURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=dc726fd3d02ce0beabb35f8feeef04c7';
+
+console.log(queryURL)
 
 $.ajax({
     url: queryURL,
@@ -63,6 +67,7 @@ $.ajax({
         localStorage.setItem("lon", lon)
         localStorage.setItem("lat", lat)
     });
+    console.log(city)
 
 })
 // API used for UV index and 5 day forecast
@@ -97,8 +102,7 @@ $.ajax({
         $(".iconCurrent").attr("src", "assets/rainbow-128.png")
     }
 
-    // 1/5 forcast 
-    // var unixDtResponse = (response.daily[0].dt)  date response in unix time 
+    // 1st forecast
     var dt1 = new Date(response.daily[1].dt * 1000);
     dt1 = moment(dt1).format("MM/DD/YYYY")
     $(".date1").text(dt1)
@@ -132,7 +136,7 @@ $.ajax({
     //------------------------------------------------------------------------------------------
 
     //------------------------------------------------------------------------------------------
-    // 2/5 forcast 
+    // 2/5 forecast 
     var dt2 = new Date(response.daily[2].dt * 1000);
     dt2 = moment(dt2).format("MM/DD/YYYY")
     $(".date2").text(dt2)
@@ -166,7 +170,7 @@ $.ajax({
     //------------------------------------------------------------------------------------------
 
     //------------------------------------------------------------------------------------------
-    // 3/5 forcast 
+    // 3/5 forecast 
     var dt3 = new Date(response.daily[3].dt * 1000);
     dt3 = moment(dt3).format("MM/DD/YYYY")
     $(".date3").text(dt3)
@@ -200,7 +204,7 @@ $.ajax({
     //------------------------------------------------------------------------------------------
 
     //------------------------------------------------------------------------------------------
-    // 4/5 forcast 
+    // 4/5 forecast 
     var dt4 = new Date(response.daily[4].dt * 1000);
     dt4 = moment(dt4).format("MM/DD/YYYY")
     $(".date4").text(dt4)
@@ -234,7 +238,7 @@ $.ajax({
     //------------------------------------------------------------------------------------------
 
     //------------------------------------------------------------------------------------------
-    // 5/5 forcast 
+    // 5/5 forecast 
     var dt5 = new Date(response.daily[5].dt * 1000);
     dt5 = moment(dt5).format("MM/DD/YYYY")
     $(".date5").text(dt5)

@@ -73,3 +73,26 @@ $.ajax({
     method: 'GET'
 }).then(function (response) {
     console.log(response)
+
+    $(".UVIndex").text("UV Index: " + response.current.uvi.toFixed(1));
+    //variable to hold the response for main weather
+    var weatherMain0 = response.current.weather[0].main;
+    // this changes to an appropriate image
+    if (weatherMain0 === "Clear") {
+        $(".iconCurrent").attr("src", "assets/sun-128.png")
+    }
+    else if (weatherMain0 === "Drizzle", "Clouds") {
+        $(".iconCurrent").attr("src", "assets/cloudy-128.png")
+    }
+    else if (weatherMain0 === "Rain") {
+        $(".iconCurrent").attr("src", "assets/rain-cloud-128.png")
+    }
+    else if (weatherMain0 === "Snow") {
+        $(".iconCurrent").attr("src", "assets/snow-128.png")
+    }
+    else if (weatherMain0 === "Thunderstorm") {
+        $(".iconCurrent").attr("src", "assets/flash-cloud-128.png")
+    }
+    else {
+        $(".iconCurrent").attr("src", "assets/rainbow-128.png")
+    }

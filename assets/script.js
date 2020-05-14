@@ -33,3 +33,35 @@ $.ajax({
     var tempC = (response.main.temp - 273.15);
     $(".tempC").text("Current Temperature (C): " + tempC.toFixed(0));
     $(".date").text("Date: " + day);
+    //adds a button to the recently searched
+    function recentlySearched() {
+        $("#buttons-view").empty();
+
+        for (var i = 0; i < cities.length; i++) {
+            var button = $('<button>');
+            //adds the bootstrap class being used for the buttons 
+            button.addClass("btn btn-outline-info my-2 my-lg-0");
+            button.attr("data-name", cities[i]);
+            button.text(cities[i])
+            $('#buttons-view').append(button)
+        }
+    }
+
+    $('#searchCity').on('click', function (event) {
+        event.preventDefault();
+        //grabs the city from the input 
+        var city = $('#city-input').val().trim();
+        //adds the searched city to the empty array of cities 
+        cities.push(city);
+        recentlySearched();
+
+        localStorage.setItem("Searched City", city);
+        console.log(city);
+        console.log(lon)
+        console.log(lat)
+        // puts the lat and lon into local storage when a city is searched 
+        localStorage.setItem("lon", lon)
+        localStorage.setItem("lat", lat)
+    });
+
+})

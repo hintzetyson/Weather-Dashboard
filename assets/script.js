@@ -264,3 +264,5 @@ $.ajax({
     else if (weatherMain5 === "Thunderstorm") {
         $(".icon5").attr("src", "assets/flash-cloud-128.png")
     }
+
+})

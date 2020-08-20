@@ -14,6 +14,16 @@ var queryURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&a
 
 console.log(queryURL)
 
+
+$('#searchCity').on('click', function (event) {
+
+    var city = $('#city-input').val().trim();
+
+// standard API 
+var queryURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=dc726fd3d02ce0beabb35f8feeef04c7';
+
+event.preventDefault();
+
 $.ajax({
     url: queryURL,
     method: 'GET'
@@ -51,9 +61,9 @@ $.ajax({
         }
     }
 
-    $('#searchCity').on('click', function (event) {
-        event.preventDefault();
-        //grabs the city from the input 
+    // $('#searchCity').on('click', function (event) {
+        // event.preventDefault();
+        // //grabs the city from the input 
         var city = $('#city-input').val().trim();
         //adds the searched city to the empty array of cities 
         cities.push(city);
@@ -66,31 +76,32 @@ $.ajax({
         // puts the lat and lon into local storage when a city is searched 
         localStorage.setItem("lon", lon)
         localStorage.setItem("lat", lat)
-    });
+    // });
     console.log(city)
 
-})
-// API used for UV index and 5 day forecast
-var queryURLTwo = 'https://api.openweathermap.org/data/2.5/onecall?lat=40.67&lon=-111.94&appid=dc726fd3d02ce0beabb35f8feeef04c7'
-
-$.ajax({
-    url: queryURLTwo,
-    method: 'GET'
-}).then(function (response) {
-    console.log(response)
-
-    $(".UVIndex").text("UV Index: " + response.current.uvi.toFixed(1));
-    //variable to hold the response for main weather
-    var weatherMain0 = response.current.weather[0].main;
-    // this changes to an appropriate image
-    if (weatherMain0 === "Clear") {
-        $(".iconCurrent").attr("src", "assets/sun-128.png")
-    }
-    else if (weatherMain0 === "Drizzle", "Clouds") {
-        $(".iconCurrent").attr("src", "assets/cloudy-128.png")
-    }
-    else if (weatherMain0 === "Rain") {
-        $(".iconCurrent").attr("src", "assets/rain-cloud-128.png")
+    // API used for UV index and 5 day forecast
+    
+    
+    var queryURLTwo = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=dc726fd3d02ce0beabb35f8feeef04c7`
+    
+    $.ajax({
+        url: queryURLTwo,
+        method: 'GET'
+    }).then(function (response) {
+        console.log(response)
+        
+        $(".UVIndex").text("UV Index: " + response.current.uvi.toFixed(1));
+        //variable to hold the response for main weather
+        var weatherMain0 = response.current.weather[0].main;
+        // this changes to an appropriate image
+        if (weatherMain0 === "Clear") {
+            $(".iconCurrent").attr("src", "assets/sun-128.png")
+        }
+        else if (weatherMain0 === "Drizzle", "Clouds") {
+            $(".iconCurrent").attr("src", "assets/cloudy-128.png")
+        }
+        else if (weatherMain0 === "Rain") {
+            $(".iconCurrent").attr("src", "assets/rain-cloud-128.png")
     }
     else if (weatherMain0 === "Snow") {
         $(".iconCurrent").attr("src", "assets/snow-128.png")
@@ -101,7 +112,7 @@ $.ajax({
     else {
         $(".iconCurrent").attr("src", "assets/rainbow-128.png")
     }
-
+    
     // 1st forecast
     var dt1 = new Date(response.daily[1].dt * 1000);
     dt1 = moment(dt1).format("MM/DD/YYYY")
@@ -114,7 +125,7 @@ $.ajax({
     $(".wind1").text("Wind Speed: " + windMPH1.toFixed(0) + " Mph");
     $(".humidity1").text("Humidity: " + response.daily[1].humidity + "%");
     $(".UVIndex1").text("UV Index: " + response.daily[1].uvi.toFixed(1))
-
+    
     var weatherMain1 = response.daily[1].weather[0].main;
     
     if (weatherMain1 === "Clear") {
@@ -132,9 +143,9 @@ $.ajax({
     else if (weatherMain1 === "Thunderstorm") {
         $(".icon1").attr("src", "assets/flash-cloud-128.png")
     }
-
+    
     //------------------------------------------------------------------------------------------
-
+    
     //------------------------------------------------------------------------------------------
     // 2/5 forecast 
     var dt2 = new Date(response.daily[2].dt * 1000);
@@ -148,9 +159,9 @@ $.ajax({
     $(".wind2").text("Wind Speed: " + windMPH1.toFixed(0) + " Mph");
     $(".humidity2").text("Humidity: " + response.daily[2].humidity + "%");
     $(".UVIndex2").text("UV Index: " + response.daily[2].uvi.toFixed(1))
-
+    
     var weatherMain2 = response.daily[2].weather[0].main;
-     
+    
     if (weatherMain2 === "Clear") {
         $(".icon2").attr("src", "assets/sun-128.png")
     }
@@ -166,9 +177,9 @@ $.ajax({
     else if (weatherMain2 === "Thunderstorm") {
         $(".icon2").attr("src", "assets/flash-cloud-128.png")
     }
-
+    
     //------------------------------------------------------------------------------------------
-
+    
     //------------------------------------------------------------------------------------------
     // 3/5 forecast 
     var dt3 = new Date(response.daily[3].dt * 1000);
@@ -182,7 +193,7 @@ $.ajax({
     $(".wind3").text("Wind Speed: " + windMPH3.toFixed(1) + " Mph");
     $(".humidity3").text("Humidity: " + response.daily[3].humidity + "%");
     $(".UVIndex3").text("UV Index: " + response.daily[3].uvi.toFixed(1))
-
+    
     var weatherMain3 = response.daily[3].weather[0].main;
     
     if (weatherMain3 === "Clear") {
@@ -200,9 +211,9 @@ $.ajax({
     else if (weatherMain3 === "Thunderstorm") {
         $(".icon3").attr("src", "assets/flash-cloud-128.png")
     }
-
+    
     //------------------------------------------------------------------------------------------
-
+    
     //------------------------------------------------------------------------------------------
     // 4/5 forecast 
     var dt4 = new Date(response.daily[4].dt * 1000);
@@ -216,7 +227,7 @@ $.ajax({
     $(".wind4").text("Wind Speed: " + windMPH4.toFixed(1) + " Mph");
     $(".humidity4").text("Humidity: " + response.daily[4].humidity + "%");
     $(".UVIndex4").text("UV Index: " + response.daily[4].uvi.toFixed(1))
-
+    
     var weatherMain4 = response.daily[4].weather[0].main;
     
     if (weatherMain4 === "Clear") {
@@ -234,9 +245,9 @@ $.ajax({
     else if (weatherMain4 === "Thunderstorm") {
         $(".icon4").attr("src", "assets/flash-cloud-128.png")
     }
-
+    
     //------------------------------------------------------------------------------------------
-
+    
     //------------------------------------------------------------------------------------------
     // 5/5 forecast 
     var dt5 = new Date(response.daily[5].dt * 1000);
@@ -250,7 +261,7 @@ $.ajax({
     $(".wind5").text("Wind Speed: " + windMPH5.toFixed(1) + " Mph");
     $(".humidity5").text("Humidity: " + response.daily[5].humidity + "%");
     $(".UVIndex5").text("UV Index: " + response.daily[5].uvi.toFixed(1))
-
+    
     var weatherMain5 = response.daily[5].weather[0].main;
     
     if (weatherMain5 === "Clear") {
@@ -268,5 +279,6 @@ $.ajax({
     else if (weatherMain5 === "Thunderstorm") {
         $(".icon5").attr("src", "assets/flash-cloud-128.png")
     }
+    
+})})});
 
-})
